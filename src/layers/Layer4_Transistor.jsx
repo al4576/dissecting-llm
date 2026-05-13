@@ -87,7 +87,7 @@ export default function Layer4_Transistor({ onDrill }) {
                 lineHeight: 1.65,
               }}
             >
-              A <span style={{ color: 'var(--glow-color)' }}>gate</span> (in the transistor sense) is opened or closed by an electric field in a thin silicon sandwich — no moving parts, just voltage on a tiny control wire. Billions of those switches are what you paid for.
+              A <span className="accent-soft-pulse" style={{ color: 'var(--glow-color)' }}>gate</span> (in the transistor sense) is opened or closed by an electric field in a thin silicon sandwich — no moving parts, just voltage on a tiny control wire. Billions of those switches are what you paid for.
             </div>
           </GlowTrigger>
         </div>

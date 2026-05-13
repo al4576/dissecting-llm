@@ -43,14 +43,17 @@ export default function Layer2_Dataset({ onDrill }) {
         </header>
 
         <section style={{ width: '100%', maxWidth: '720px', textAlign: 'left' }}>
-          <h2 style={{
-            fontFamily: 'monospace',
-            fontSize: '11px',
-            color: 'var(--glow-color)',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            marginBottom: '12px',
-          }}>
+          <h2
+            className="accent-soft-pulse"
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: 'var(--glow-color)',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              marginBottom: '12px',
+            }}
+          >
             Why pretraining matters
           </h2>
           <p style={{ fontFamily: 'monospace', fontSize: '12px', color: '#889', lineHeight: 1.85, marginBottom: '14px' }}>
@@ -121,7 +124,7 @@ export default function Layer2_Dataset({ onDrill }) {
               fontSize: '12px',
               maxWidth: '420px',
             }}>
-              <div style={{ color: 'var(--glow-color)', fontSize: '20px', fontWeight: 'bold' }}>60%</div>
+              <div className="accent-soft-pulse" style={{ color: 'var(--glow-color)', fontSize: '20px', fontWeight: 'bold' }}>60%</div>
               <div style={{ color: '#8a9', marginTop: '6px', lineHeight: 1.5 }}>Open-web scrape, quality-filtered — Common Crawl (filtered)</div>
               <div style={{ color: '#555', fontSize: '10px', marginTop: '8px', letterSpacing: '0.04em' }}>410,000,000,000 tokens</div>
             </div>

@@ -12,15 +12,54 @@ body { font-family: monospace; background: #0a0a0a; color: #e0e0e0; }
   --surface: #141414;
   --border: #2a2a2a;
   --text: #e0e0e0;
-  --text-muted: #888;
+  --text-muted: #aab4bf;
+  --body-secondary: #98a4b0;
   --accent: #00ffcc;
   --danger: #ff4444;
 }
 
-/* Optional: very subtle idle highlight (no pulse by default) */
-@keyframes pulse-glow {
-  from { box-shadow: 0 0 2px rgba(0, 255, 204, 0.25); }
-  to   { box-shadow: 0 0 4px rgba(0, 255, 204, 0.35); }
+/* Teal text glow + slow pulse — strong enough to read as “lit” on dark UI */
+@keyframes accent-text-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 8px rgba(0, 255, 204, 0.45),
+      0 0 18px rgba(0, 255, 204, 0.28),
+      0 0 32px rgba(0, 255, 204, 0.14);
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgba(0, 255, 204, 0.65),
+      0 0 26px rgba(0, 255, 204, 0.4),
+      0 0 48px rgba(0, 255, 204, 0.2);
+  }
+}
+
+.accent-soft-pulse {
+  /* Idle halo so it never reads as flat cyan */
+  text-shadow:
+    0 0 10px rgba(0, 255, 204, 0.5),
+    0 0 22px rgba(0, 255, 204, 0.25);
+  animation: accent-text-pulse 3.2s ease-in-out infinite;
+}
+
+/* Drill-trigger frame: visible breathing glow */
+@keyframes accent-box-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 204, 0.45),
+      0 0 14px rgba(0, 255, 204, 0.22),
+      0 0 32px rgba(0, 255, 204, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 204, 0.65),
+      0 0 22px rgba(0, 255, 204, 0.32),
+      0 0 44px rgba(0, 255, 204, 0.16);
+  }
+}
+
+.glow-trigger-pulse {
+  animation: accent-box-pulse 3.2s ease-in-out infinite;
 }
 
 /* Depth transition overlay */

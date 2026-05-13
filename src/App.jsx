@@ -197,7 +197,12 @@ export default function App() {
                   opacity: transitioning && !active ? 0.55 : 1,
                 }}
               >
-                {i} · {label}
+                <span
+                  className={active ? 'accent-soft-pulse' : undefined}
+                  style={{ color: 'inherit' }}
+                >
+                  {i} · {label}
+                </span>
               </button>
             );
           })}

@@ -6,7 +6,6 @@ export default function GlowTrigger({ children, label, onDrill }) {
     cursor: 'pointer',
     borderRadius: '4px',
     position: 'relative',
-    boxShadow: '0 0 0 1px rgba(0, 255, 204, 0.22), 0 0 8px rgba(0, 255, 204, 0.08)',
   };
 
   const labelStyle = {
@@ -22,10 +21,10 @@ export default function GlowTrigger({ children, label, onDrill }) {
 
   return (
     <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={style} onClick={(e) => onDrill && onDrill(e)}>
+      <div className="glow-trigger-pulse" style={style} onClick={(e) => onDrill && onDrill(e)}>
         {children}
       </div>
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <span className="accent-soft-pulse" style={labelStyle}>{label}</span>}
     </div>
   );
 }

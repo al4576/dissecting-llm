@@ -66,11 +66,11 @@ export default function PhilosophyFrame({ thinker, title, body }) {
 
   return (
     <div style={panelStyle}>
-      <button style={toggleStyle} onClick={() => setCollapsed(c => !c)}>
+      <button className="accent-soft-pulse" style={toggleStyle} onClick={() => setCollapsed(c => !c)}>
         {collapsed ? 'THEORY' : 'THEORY ↑'}
       </button>
       <div style={contentStyle}>
-        {thinker && <div style={thinkerStyle}>{thinker}</div>}
+        {thinker && <div className="accent-soft-pulse" style={thinkerStyle}>{thinker}</div>}
         {title && <div style={titleStyle}>{title}</div>}
         {body && <div style={bodyStyle}>{body}</div>}
       </div>

@@ -11,10 +11,13 @@ import SamplingExplorer from '../components/viz/SamplingExplorer';
 function SectionHeader({ number, title }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '22px' }}>
-      <span style={{
-        fontFamily: 'monospace', fontSize: '11px', color: 'var(--glow-color)',
-        letterSpacing: '0.14em', flexShrink: 0,
-      }}>
+      <span
+        className="accent-soft-pulse"
+        style={{
+          fontFamily: 'monospace', fontSize: '11px', color: 'var(--glow-color)',
+          letterSpacing: '0.14em', flexShrink: 0,
+        }}
+      >
         {String(number).padStart(2, '0')}
       </span>
       <div style={{ flex: 1, height: '1px', background: '#1a1a1a' }} />
@@ -32,7 +35,7 @@ function SectionHeader({ number, title }) {
 function Body({ children, style }) {
   return (
     <p style={{
-      fontFamily: 'monospace', fontSize: '12.5px', color: '#778',
+      fontFamily: 'monospace', fontSize: '12.5px', color: 'var(--body-secondary)',
       lineHeight: 1.85, marginBottom: '16px', maxWidth: '520px',
       ...style,
     }}>
@@ -44,7 +47,13 @@ function Body({ children, style }) {
 // Inline emphasis
 const W = ({ c }) => <span style={{ color: c || '#bbb' }}>{c ? undefined : null}</span>;
 function Hi({ children }) { return <span style={{ color: '#c8c8c8' }}>{children}</span>; }
-function Ac({ children }) { return <span style={{ color: 'var(--glow-color)' }}>{children}</span>; }
+function Ac({ children, ...rest }) {
+  return (
+    <span className="accent-soft-pulse" style={{ color: 'var(--glow-color)' }} {...rest}>
+      {children}
+    </span>
+  );
+}
 function Bl({ children }) { return <span style={{ color: '#4488ff' }}>{children}</span>; }
 function Or({ children }) { return <span style={{ color: '#ff9944' }}>{children}</span>; }
 function Gr({ children }) { return <span style={{ color: '#44cc88' }}>{children}</span>; }
@@ -78,17 +87,17 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
       <div style={{ flex: 1, overflowY: 'auto', padding: '44px 44px 80px' }}>
         {/* ── Page header ── */}
         <div style={{ marginBottom: '52px' }}>
-          <div style={{ fontFamily: 'monospace', fontSize: '10px', color: '#445', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '8px' }}>
+          <div style={{ fontFamily: 'monospace', fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '8px', opacity: 0.92 }}>
             Layer 1 — Algorithms
           </div>
           <h1 style={{ fontFamily: 'monospace', fontSize: '24px', color: '#e0e0e0', marginBottom: '0', lineHeight: 1.2, maxWidth: '720px' }}>
             How language models work
           </h1>
-          <p style={{ fontFamily: 'monospace', fontSize: '12.5px', color: '#556', maxWidth: '540px', lineHeight: 1.8, marginTop: '14px' }}>
-            Four stops on the assembly line — <strong style={{ color: '#778' }}>tokenization</strong> (text → numbers),{' '}
-            <strong style={{ color: '#778' }}>embeddings</strong> (numbers → little meaning lists),{' '}
-            <strong style={{ color: '#778' }}>attention</strong> (words peek at each other),{' '}
-            <strong style={{ color: '#778' }}>sampling</strong> (pick the next word). The prompt you typed in Layer 0 is what flows through below.
+          <p style={{ fontFamily: 'monospace', fontSize: '12.5px', color: 'var(--body-secondary)', maxWidth: '540px', lineHeight: 1.8, marginTop: '14px' }}>
+            Four stops on the assembly line — <strong style={{ color: 'var(--text-muted)' }}>tokenization</strong> (text → numbers),{' '}
+            <strong style={{ color: 'var(--text-muted)' }}>embeddings</strong> (numbers → little meaning lists),{' '}
+            <strong style={{ color: 'var(--text-muted)' }}>attention</strong> (words peek at each other),{' '}
+            <strong style={{ color: 'var(--text-muted)' }}>sampling</strong> (pick the next word). The prompt you typed in Layer 0 is what flows through below.
           </p>
         </div>
 
@@ -115,10 +124,10 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
                 padding: '12px 16px', fontFamily: 'monospace',
                 fontSize: '12px', marginBottom: '16px', lineHeight: 2,
               }}>
-                <span style={{ color: '#778' }}>text</span>
-                <span style={{ color: '#334' }}> → bytes → BPE merges → </span>
+                <span style={{ color: 'var(--text-muted)' }}>text</span>
+                <span style={{ color: '#6a7580' }}> → bytes → BPE merges → </span>
                 <Ac>[t₁, t₂, … tₙ]</Ac>
-                <div style={{ fontSize: '10px', color: '#334', marginTop: '2px' }}>
+                <div style={{ fontSize: '10px', color: '#6a7580', marginTop: '2px' }}>
                   each tᵢ ∈ [0, 50256] — an index into the embedding matrix
                 </div>
               </div>
@@ -166,17 +175,17 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
                 fontSize: '12px', marginBottom: '16px', lineHeight: 2,
               }}>
                 <Ac>eᵢ</Ac>
-                <span style={{ color: '#334' }}> = </span>
+                <span style={{ color: '#6a7580' }}> = </span>
                 <span
-                  style={{ color: '#888', cursor: 'help', borderBottom: '1px dotted #456' }}
+                  style={{ color: 'var(--text-muted)', cursor: 'help', borderBottom: '1px dotted #456' }}
                   title="W_E = embedding matrix: one row per vocabulary entry, filled in during training. Pick row tᵢ for token i."
                 >
                   W_E
                 </span>
-                <span style={{ color: '#778' }}>[tᵢ]</span>
-                <span style={{ color: '#334' }}>   ∈ ℝ</span>
-                <span style={{ color: '#778' }}>ᵈ</span>
-                <div style={{ fontSize: '10px', color: '#334', marginTop: '2px' }}>
+                <span style={{ color: 'var(--text-muted)' }}>[tᵢ]</span>
+                <span style={{ color: '#6a7580' }}>   ∈ ℝ</span>
+                <span style={{ color: 'var(--text-muted)' }}>ᵈ</span>
+                <div style={{ fontSize: '10px', color: '#6a7580', marginTop: '2px' }}>
                   integer index → row lookup — no multiplication
                 </div>
               </div>
@@ -219,7 +228,7 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
         </div>
 
         <div style={{
-          fontFamily: 'monospace', fontSize: '11px', color: '#556',
+          fontFamily: 'monospace', fontSize: '11px', color: 'var(--body-secondary)',
           margin: '16px auto 0', borderLeft: '2px solid var(--glow-color)',
           lineHeight: 1.85,
           background: '#080c08',
@@ -262,12 +271,12 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
                 fontSize: '12px', marginBottom: '16px', lineHeight: 2,
               }}>
                 <Ac>P</Ac>
-                <span style={{ color: '#334' }}>(next | </span>
+                <span style={{ color: '#6a7580' }}>(next | </span>
                 <Bl>context</Bl>
-                <span style={{ color: '#334' }}>) ≈ softmax(scores / </span>
+                <span style={{ color: '#6a7580' }}>) ≈ softmax(scores / </span>
                 <Or>T</Or>
-                <span style={{ color: '#334' }}>)</span>
-                <div style={{ fontSize: '10px', color: '#334', marginTop: '2px' }}>
+                <span style={{ color: '#6a7580' }}>)</span>
+                <div style={{ fontSize: '10px', color: '#6a7580', marginTop: '2px' }}>
                   here, “scores” are the visible rules; in a real LM they are logits
                 </div>
               </div>
@@ -300,7 +309,7 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
           <p style={{
             fontFamily: 'monospace',
             fontSize: '11px',
-            color: '#667',
+            color: 'var(--body-secondary)',
             lineHeight: 1.85,
             textAlign: 'center',
             marginBottom: '20px',
@@ -308,7 +317,7 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
             marginLeft: 'auto',
             marginRight: 'auto',
           }}>
-            <strong style={{ color: '#889' }}>Going deeper (optional):</strong>{' '}
+            <strong style={{ color: 'var(--text-muted)' }}>Going deeper (optional):</strong>{' '}
             the same six-step attention math as a vertical cartoon. Click a box for the formulas
             and tiny worked numbers built from your tokenizer output.
           </p>
@@ -328,7 +337,7 @@ export default function Layer1_Attention({ onDrill, userPrompt }) {
               border: '1px solid #1a2030',
               fontFamily: 'monospace',
               fontSize: '11px',
-              color: '#667',
+              color: 'var(--text-muted)',
               maxWidth: '440px',
               lineHeight: 1.65,
             }}

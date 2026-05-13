@@ -40,7 +40,7 @@ export default function Layer5_Physics({ onReturnToSurface }) {
             Physics (the simple version)
           </h1>
           <p style={{ ...p, marginTop: 0 }}>
-            Imagine a wall full of light switches. Each switch can only be <strong style={{ color: 'var(--glow-color)' }}>up</strong> or{' '}
+            Imagine a wall full of light switches. Each switch can only be <strong className="accent-soft-pulse" style={{ color: 'var(--glow-color)' }}>up</strong> or{' '}
             <strong style={{ color: '#8a9' }}>down</strong>. There is no “almost up.” A computer chip is like that, except the switches are
             so small you need a microscope to even start to see them, and there are billions or trillions of them packed together.
           </p>
