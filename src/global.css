@@ -1,0 +1,48 @@
+/* Reset only — no decorative styles */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { width: 100%; height: 100%; }
+body { font-family: monospace; background: #0a0a0a; color: #e0e0e0; }
+
+/* CSS Variables */
+:root {
+  --glow-color: #00ffcc;
+  /* Subtle static highlight — avoid heavy bloom / pulse */
+  --glow-shadow: 0 0 3px rgba(0, 255, 204, 0.35), 0 0 10px rgba(0, 255, 204, 0.12);
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --border: #2a2a2a;
+  --text: #e0e0e0;
+  --text-muted: #888;
+  --accent: #00ffcc;
+  --danger: #ff4444;
+}
+
+/* Optional: very subtle idle highlight (no pulse by default) */
+@keyframes pulse-glow {
+  from { box-shadow: 0 0 2px rgba(0, 255, 204, 0.25); }
+  to   { box-shadow: 0 0 4px rgba(0, 255, 204, 0.35); }
+}
+
+/* Depth transition overlay */
+.depth-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #000;
+  pointer-events: none;
+}
+
+/* Bottom nav: chip appears when user first reaches that layer */
+@keyframes nav-chip-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.nav-chip-enter {
+  animation: nav-chip-enter 0.42s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+}
+
+/* That's it. Layers style themselves minimally. No more global rules. */
